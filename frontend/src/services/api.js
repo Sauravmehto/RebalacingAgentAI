@@ -19,14 +19,12 @@ const client = axios.create({
   timeout: 600_000,
 })
 
-// Avoid stale cached GET responses after a full page refresh (browser / devtools proxy).
+// Cache-bust GETs with _t only. Do not add Cache-Control/Pragma — those trigger CORS preflight
+// on cross-origin requests (Netlify → Render) and can break before the API responds.
 client.interceptors.request.use((config) => {
   const m = (config.method || 'get').toLowerCase()
   if (m === 'get') {
     config.params = { ...config.params, _t: Date.now() }
-    config.headers = config.headers || {}
-    config.headers['Cache-Control'] = 'no-cache'
-    config.headers.Pragma = 'no-cache'
   }
   return config
 })
@@ -78,9 +76,13 @@ export async function getLastReport() {
 
 /**
  * Health check — confirms the Nexus v2 API is running (see API_PORT in .env / Vite proxy).
+ * Longer timeout for remote APIs (e.g. Render free tier cold start).
  */
 export async function getHealth() {
-  const { data } = await client.get('/health', { timeout: 5_000 })
+  const remote = Boolean(import.meta.env.VITE_API_BASE_URL?.trim())
+  const { data } = await client.get('/health', {
+    timeout: remote ? 60_000 : 8_000,
+  })
   return data
 }
 

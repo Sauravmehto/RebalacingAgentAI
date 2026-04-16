@@ -149,20 +149,24 @@ export default function Dashboard() {
       setCsvPath(null)
       setError(null)
 
+      const apiBase = import.meta.env.VITE_API_BASE_URL?.trim()
       try {
         const h = await getHealth()
         if (cancelled) return
         if (h?.service && h.service !== 'nexus-ai-v2') {
           setApiWarning(
-            'Wrong API behind the Vite proxy (health missing service:nexus-ai-v2). ' +
-            'Set API_PORT in nexus_agent/.env (default 8010), run python src/api.py there, restart npm run dev.',
+            apiBase
+              ? 'The URL in VITE_API_BASE_URL is not the Nexus v2 API (health.service is not nexus-ai-v2). Check the URL and redeploy with the correct VITE_API_BASE_URL.'
+              : 'Wrong API behind the Vite proxy (health missing service:nexus-ai-v2). ' +
+                'Set API_PORT in nexus_agent/.env (default 8010), run python src/api.py there, restart npm run dev.',
           )
         }
       } catch {
         if (!cancelled) {
           setApiWarning(
-            'Cannot reach the Nexus API. From nexus_agent run: python src/api.py (uses API_PORT in .env). ' +
-            'Restart Vite after changing .env. Or: npm run dev:all from frontend.',
+            apiBase
+              ? `Cannot reach the API at ${apiBase.replace(/\/$/, '')}. If the service is on Render, wait ~60s for a cold start and refresh. Confirm CORS on the server includes this site (${typeof window !== 'undefined' ? window.location.origin : ''}) and that the URL has no typo.`
+              : 'Cannot reach the Nexus API. From nexus_agent run: python src/api.py (uses API_PORT in .env), or from frontend: npm run dev:all. Restart Vite after changing .env.',
           )
         }
       }

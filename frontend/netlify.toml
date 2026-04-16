@@ -1,0 +1,14 @@
+# Netlify: set site "Base directory" to `frontend` if repo root is nexus_agent,
+# or deploy from this folder as the repo root.
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# SPA: React Router / client-side routes
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
