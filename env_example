@@ -1,0 +1,12 @@
+ANTHROPIC_API_KEY=
+CLAUDE_MODEL=claude-sonnet-4-5-20250929
+
+# Optional: full path to portfolio CSV for `python src/main.py` default (Enter key)
+# PORTFOLIO_CSV=C:\Users\You\Downloads\Nexus_AI_Portfolio_Tracker(Portfolio).csv
+
+FINNHUB_API_KEY=
+NEWSDATA_API_KEY=YOUR_NEWSDATA_API_KEY
+
+# API_PORT=8010  (default). Must match Vite proxy — same file is loaded by frontend/vite.config.js.
+# If /api/* returns 404 {detail:"Not Found"}, another app may be using the port; change API_PORT here and restart python + npm run dev.
+# Browser: http://127.0.0.1:${API_PORT}/docs — not http://0.0.0.0

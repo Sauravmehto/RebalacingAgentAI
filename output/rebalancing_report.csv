@@ -1,0 +1,14 @@
+symbol,sector,buy_price,current_price,current_value,return_pct,sentiment,strength,trend,trend_7d,trend_30d,allocation_status,score,action,confidence,reason,priority_sell,estimated_flow_usd
+MSFT,Technology,398.55,411.22,75253.26,3.18,Negative,Neutral,Uptrend,Uptrend,Downtrend,Underweight,56.6,HOLD,HIGH,"Mixed signals — score=57, sentiment=Negative, trend=Uptrend, allocation=Underweight, return=+3.2%",False,0.0
+NVDA,Technology,182.4701,198.87,65428.23,8.99,Negative,Neutral,Uptrend,Uptrend,Sideways,Underweight,60.1,HOLD,HIGH,"Mixed signals — score=60, sentiment=Negative, trend=Uptrend, allocation=Underweight, return=+9.0%",False,0.0
+JPM,Financial Services,296.0449,305.93,84742.61,3.34,Neutral,Neutral,Uptrend,Sideways,Uptrend,Underweight,64.8,HOLD,HIGH,"Mixed signals — score=65, sentiment=Neutral, trend=Uptrend, allocation=Underweight, return=+3.3%",False,0.0
+XOM,Energy,154.22,149.01,89555.01,-3.38,Negative,Neutral,Downtrend,Downtrend,Uptrend,Underweight,54.6,SELL,HIGH,Downtrend confirmed with negative sector sentiment — exit position,True,89555.01
+PG,Consumer Defensive,163.51,143.38,66958.46,-12.31,Neutral,Weak,Downtrend,Sideways,Downtrend,Underweight,54.3,REDUCE,MEDIUM,Early warning: -12.3% drawdown — reducing position to manage risk,True,16739.62
+NKE,Consumer Cyclical,61.01,45.44,21947.52,-25.52,Positive,Weak,Downtrend,Sideways,Downtrend,Underweight,54.0,SELL,MEDIUM,Stop loss triggered at -25.5% — protecting capital from further downside,True,21947.52
+CAT,Industrials,752.32,770.17,154034.0,2.37,Neutral,Neutral,Uptrend,Uptrend,Uptrend,Neutral,65.2,HOLD,HIGH,"Mixed signals — score=65, sentiment=Neutral, trend=Uptrend, allocation=Neutral, return=+2.4%",False,0.0
+HON,Industrials,248.04,232.19,101931.41,-6.39,Neutral,Neutral,Sideways,Sideways,Sideways,Neutral,51.8,HOLD,LOW,"Mixed signals — score=52, sentiment=Neutral, trend=Sideways, allocation=Neutral, return=-6.4%",False,0.0
+SPY,ETF,684.5106,699.94,348570.12,2.25,Positive,Neutral,Uptrend,Uptrend,Sideways,Overweight,57.0,BUY,HIGH,Uptrend with positive sector sentiment — momentum favours adding,False,6971.4
+QQQ,ETF,607.3242,637.4,327623.61,4.95,Positive,Neutral,Uptrend,Uptrend,Sideways,Overweight,57.2,BUY,HIGH,Uptrend with positive sector sentiment — momentum favours adding,False,6552.47
+VT,ETF,146.6057,148.62,81443.76,1.37,Positive,Neutral,Uptrend,Uptrend,Sideways,Overweight,56.9,BUY,HIGH,Uptrend with positive sector sentiment — momentum favours adding,False,1628.88
+ARKK,ETF,74.22,77.47,35636.2,4.38,Positive,Neutral,Uptrend,Uptrend,Downtrend,Overweight,54.2,BUY,HIGH,Uptrend with positive sector sentiment — momentum favours adding,False,712.72
+GLD,ETF,490.0,440.46,60783.48,-10.11,Positive,Weak,Downtrend,Sideways,Downtrend,Overweight,46.7,REDUCE,HIGH,Early warning: -10.1% drawdown — reducing position to manage risk,True,15195.87

@@ -1,0 +1,27 @@
+[
+  {
+    "uri": "2026-04-1138202750",
+    "lang": "eng",
+    "isDuplicate": false,
+    "date": "2026-04-12",
+    "time": "03:39:49",
+    "dateTime": "2026-04-12T03:39:49Z",
+    "dateTimePub": "2026-04-12T03:22:06Z",
+    "dataType": "news",
+    "sim": 0.6745098233222961,
+    "url": "https://www.investing.com/news/company-news/cathie-woods-ark-buys-palantir-stock-sells-amd-shares-93CH-4609017",
+    "title": "Cathie Wood's ARK buys Palantir stock, sells AMD shares By Investing.com",
+    "body": "Cathie Wood's ARK ETF published their daily trades for Saturday, April 11th, 2026, revealing significant movements in Palantir Technologies Inc (NYSE:PLTR) and Advanced Micro Devices Inc (NASDAQ:AMD).\n\nThe largest transaction of the day was ARK's acquisition of 85,485 shares of Palantir Technologies, valued at approximately $11.15 million. This purchase was spread across several of ARK's funds, with the ARKK ETF acquiring 46,455 shares, the ARKQ ETF 15,127 shares, the ARKW ETF 11,865 shares, the ARKF ETF 5,973 shares, and the ARKX ETF 6,065 shares. This move underscores ARK's continued interest in Palantir, as they further increase their holdings in the company.\n\nConversely, ARK made a notable sale of Advanced Micro Devices stock, offloading 44,446 shares, which amounted to a total value of $10.52 million. The shares were sold across multiple ARK ETFs, including 24,155 shares from ARKK, 7,864 from ARKQ, 6,169 from ARKW, 3,105 from ARKF, and 3,153 from ARKX. This marks a significant reduction in ARK's position in AMD.\n\nAdditionally, ARK continued its pattern of divesting from Strata Critical Medical Inc (NASDAQ:SRTA), selling 75,389 shares for a total of $305,325. The majority of these shares, 64,933, were sold through the ARKQ ETF, with the remaining 10,456 shares sold through the ARKX ETF. This sale follows a consistent trend of selling SRTA shares over the past week.\n\nThese trades highlight ARK's strategic adjustments in its investment portfolio, focusing on expanding its position in Palantir while reducing its exposure to AMD and Strata Critical Medical. Investors will be keen to see how these decisions align with broader market trends and ARK's long-term investment strategies.\n\nThis article was generated with the support of AI and reviewed by an editor. For more information see our T&C.",
+    "source": {
+      "uri": "investing.com",
+      "dataType": "news",
+      "title": "Investing.com"
+    },
+    "authors": [],
+    "image": "https://i-invdn-com.investing.com/redesign/images/seo/investing_300X300.png",
+    "eventUri": "eng-11565019",
+    "sentiment": 0.5372549019607844,
+    "wgt": 513661189,
+    "relevance": 1
+  }
+]
