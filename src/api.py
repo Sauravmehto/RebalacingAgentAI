@@ -55,8 +55,9 @@ app = FastAPI(
     version="2.0.0",
 )
 
-# Local dev + optional production frontends (e.g. Netlify): set CORS_ORIGINS on Render
-# to a comma-separated list, e.g. https://your-app.netlify.app,https://your-domain.com
+# Local dev + optional production frontends.
+# - CORS_ORIGINS (comma-separated) on Render: add custom domains, e.g. https://mydomain.com
+# - *.netlify.app is allowed via allow_origin_regex so drag-and-drop Netlify deploys work without env.
 _default_cors = [
     "http://localhost:5173",
     "http://127.0.0.1:5173",
@@ -69,6 +70,7 @@ _cors_allow = list(dict.fromkeys(_default_cors + _extra_cors))
 app.add_middleware(
     CORSMiddleware,
     allow_origins=_cors_allow,
+    allow_origin_regex=r"https://[a-zA-Z0-9][-a-zA-Z0-9]*\.netlify\.app",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
