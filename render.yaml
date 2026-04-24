@@ -1,0 +1,15 @@
+# Render Blueprint — repo root. Dashboard: New → Blueprint → connect Git → apply.
+# Or: New → Web Service → match settings below (same effect).
+#
+# After deploy: copy the service URL → set VITE_API_BASE_URL on Netlify (no trailing slash).
+# Secrets (ANTHROPIC_API_KEY, etc.): Render Dashboard → Environment — never commit them.
+
+services:
+  - type: web
+    name: nexus-ai-api
+    runtime: python
+    plan: free
+    region: oregon
+    buildCommand: pip install -r requirements.txt
+    startCommand: cd src && uvicorn api:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health

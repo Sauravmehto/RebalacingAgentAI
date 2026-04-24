@@ -1,0 +1,20 @@
+# Site deploys from repo root; app lives in /frontend.
+# Connect Git on Netlify → leave defaults; this file sets base + SPA fallback.
+#
+# Required env (Site settings → Environment variables → Build):
+#   VITE_API_BASE_URL = https://YOUR-SERVICE.onrender.com
+# No trailing slash. Rebuild after changing.
+
+[build]
+  base = "frontend"
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# Single-page app (React)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
