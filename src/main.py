@@ -105,7 +105,7 @@ def main() -> None:
         print(f"\nFile not found: {csv_path}")
         print(
             f"  Tip: copy your tracker export to:\n"
-            f"    {Path.home() / 'Downloads' / _CSV_NAME}\n"
+            f"    {Path.home() / 'Downloads' / _CSV_FILENAME}\n"
             f"  Or set PORTFOLIO_CSV in nexus_agent/.env to the full path."
         )
         sys.exit(1)
