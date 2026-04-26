@@ -188,11 +188,12 @@ def _compute_confidence(
 
 
 def rebalance_decision_v2(
-    return_pct:        float,
-    sentiment:         str,
-    trend_label:       str,
-    allocation_status: str,
-    score:             float,
+    return_pct:               float,
+    sentiment:                str,
+    trend_label:              str,
+    allocation_status:       str,
+    score:                    float,
+    return_pct_is_estimated: bool = False,
 ) -> tuple:
     """
     Apply v2 rebalancing rules and return (action, reason, confidence).
@@ -208,6 +209,8 @@ def rebalance_decision_v2(
     confidence = _compute_confidence(
         return_pct, sentiment, trend_label, allocation_status, score
     )
+    if return_pct_is_estimated:
+        confidence = "LOW"
 
     # ── 1. Profit booking ─────────────────────────────────────────────────────
     if return_pct >= STRONG_SELL_THRESHOLD:

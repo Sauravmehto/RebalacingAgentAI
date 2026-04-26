@@ -25,8 +25,18 @@ from langchain_anthropic import ChatAnthropic
 from langgraph.graph import StateGraph, START, END
 from typing_extensions import TypedDict
 
-from tools.data_fetch import enrich_ticker
+from tools.data_fetch import (
+    COST_BASIS_CLAUDE,
+    COST_BASIS_CSV,
+    COST_BASIS_UNKNOWN_FLAT,
+    enrich_ticker,
+)
 from tools.news import build_sector_news
+from tools.reporting import (
+    build_execution_timeline,
+    build_macro_triggers,
+    summarize_cost_basis,
+)
 from tools.trend import build_ticker_trends
 from tools.scoring import (
     calculate_score_v2,
@@ -96,6 +106,7 @@ class AgentState(TypedDict):
     output:             Dict                 # final JSON report dict
     explanations:       List[str]            # one sentence per stock
     errors:             List[str]
+    warnings:           List[str]            # non-fatal cost-basis / data caveats
     # Optional rebalance scenario (news-aware run)
     custom_prompt:      str                  # user scenario text; may be ""
     selected_headlines: List[str]            # user-picked headline strings; may be []
@@ -157,30 +168,70 @@ def gather_data(state: AgentState) -> AgentState:
     log.info("── Node 3: gather_data ──")
     market_data = []
     errors      = list(state.get("errors", []))
+    warnings    = list(state.get("warnings", []))
+
+    strict = os.getenv("STRICT_COST_BASIS", "").strip().lower() in ("1", "true", "yes")
+    if strict:
+        missing = [
+            s["ticker"]
+            for s in state["analyzed"]
+            if not (s.get("buy_price") is not None and float(s.get("buy_price") or 0) > 0)
+        ]
+        if missing:
+            raise ValueError(
+                "STRICT_COST_BASIS is set: every CSV row must include a positive "
+                f"Buy price / Price column. Missing or invalid for: {', '.join(missing)}"
+            )
 
     for stock in state["analyzed"]:
         ticker = stock["ticker"]
         log.info("  Fetching data for %s …", ticker)
         try:
             enriched = enrich_ticker(
-                ticker        = ticker,
-                purchase_date = stock.get("purchase_date", ""),
-                quantity      = stock["quantity"],
-                buy_price_csv = stock.get("buy_price"),
+                ticker            = ticker,
+                purchase_date     = stock.get("purchase_date", ""),
+                quantity          = stock["quantity"],
+                buy_price_csv     = stock.get("buy_price"),
+                current_price_csv = stock.get("current_price_csv"),
             )
-            market_data.append({**stock, **enriched})
+            row = {**stock, **enriched}
+            market_data.append(row)
+
+            note = row.get("price_discrepancy_note")
+            if note:
+                warnings.append(f"{ticker}: {note}")
+
+            src = row.get("cost_basis_source", "")
+            if src != COST_BASIS_CSV:
+                if src == COST_BASIS_UNKNOWN_FLAT:
+                    warnings.append(
+                        f"{ticker}: No CSV buy price and no historical cost — "
+                        "buy_price was set to current price; return% is not a real P&L."
+                    )
+                elif src == COST_BASIS_CLAUDE:
+                    warnings.append(
+                        f"{ticker}: Cost basis estimated via Claude for date "
+                        f"{stock.get('purchase_date') or 'n/a'} — verify return% before trading."
+                    )
+                else:
+                    warnings.append(
+                        f"{ticker}: Return% uses reconstructed cost from market data "
+                        f"({src}), not your CSV buy price — confirm basis."
+                    )
         except Exception as exc:
             msg = f"{ticker}: data fetch failed ({exc})"
             log.error(msg)
             errors.append(msg)
             market_data.append({
                 **stock,
-                "current_price":    0.0,
-                "buy_price":        stock.get("buy_price") or 0.0,
-                "return_pct":       0.0,
-                "current_value":    0.0,
-                "investment_value": 0.0,
-                "sector":           stock.get("sector_csv", "Unknown"),
+                "current_price":           0.0,
+                "buy_price":               stock.get("buy_price") or 0.0,
+                "return_pct":              0.0,
+                "current_value":           0.0,
+                "investment_value":        0.0,
+                "sector":                  stock.get("sector_csv", "Unknown"),
+                "cost_basis_source":       "fetch_failed",
+                "return_pct_is_estimated": True,
             })
 
     # Re-compute position_size_pct now that we have real dollar values
@@ -193,7 +244,7 @@ def gather_data(state: AgentState) -> AgentState:
 
     log.info("  Enriched %d tickers. Total portfolio value: $%.2f",
              len(market_data), total_value)
-    return {**state, "market_data": market_data, "errors": errors}
+    return {**state, "market_data": market_data, "errors": errors, "warnings": warnings}
 
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -400,11 +451,12 @@ def rebalance_portfolio(state: AgentState) -> AgentState:
 
     for stock in state["scored_stocks"]:
         action, reason, confidence = rebalance_decision_v2(
-            return_pct        = stock.get("return_pct", 0.0),
-            sentiment         = stock.get("sentiment", "Neutral"),
-            trend_label       = stock.get("trend_label", "Sideways"),
-            allocation_status = stock.get("allocation_status", "Neutral"),
-            score             = stock.get("score", 50.0),
+            return_pct               = stock.get("return_pct", 0.0),
+            sentiment                = stock.get("sentiment", "Neutral"),
+            trend_label              = stock.get("trend_label", "Sideways"),
+            allocation_status        = stock.get("allocation_status", "Neutral"),
+            score                    = stock.get("score", 50.0),
+            return_pct_is_estimated  = bool(stock.get("return_pct_is_estimated")),
         )
         log.info("  %-6s → %-12s  [%s]  %s",
                  stock["ticker"], action, confidence, reason)
@@ -440,7 +492,8 @@ def generate_output(state: AgentState) -> AgentState:
         sentiments = state["sentiments"],
         cash_pct   = cash_pct,
     )
-    summary["capital_flows"] = compute_capital_flows(recs, cash_pct)
+    summary["capital_flows"]     = compute_capital_flows(recs, cash_pct)
+    summary["cost_basis_summary"] = summarize_cost_basis(recs)
 
     print_report_table_v2(recs)
     print_portfolio_summary_v2(summary, state["current_allocation"], state["market_sentiment"])
@@ -451,26 +504,33 @@ def generate_output(state: AgentState) -> AgentState:
         "sector_sentiments": state["sentiments"],
         "current_allocation": state.get("current_allocation", {}),
         "target_allocation":  TARGET_ALLOCATION,
+        "execution_timeline": build_execution_timeline(),
+        "macro_triggers":     build_macro_triggers(),
+        "warnings":           list(state.get("warnings", [])),
         "stocks": [
             {
-                "symbol":            r["ticker"],
-                "sector":            r.get("sector", ""),
-                "buy_price":         r.get("buy_price", 0),
-                "current_price":     r.get("current_price", 0),
-                "current_value":     r.get("current_value", 0),
-                "return_pct":        r.get("return_pct", 0),
-                "sentiment":         r.get("sentiment", "Neutral"),
-                "strength":          r.get("strength", "Neutral"),
-                "trend":             r.get("trend_label", "Sideways"),
-                "trend_7d":          r.get("trend_7d", "Sideways"),
-                "trend_30d":         r.get("trend_30d", "Sideways"),
-                "allocation_status": r.get("allocation_status", "Neutral"),
-                "score":             r.get("score", 0),
-                "action":            r.get("action", "HOLD"),
-                "confidence":        r.get("confidence", "MEDIUM"),
-                "reason":            r.get("reason", ""),
-                "priority_sell":     r.get("action", "HOLD") in SELL_ACTION_TYPES,
-                "estimated_flow_usd": estimated_flow_usd_for_action(
+                "symbol":                   r["ticker"],
+                "sector":                   r.get("sector", ""),
+                "buy_price":                r.get("buy_price", 0),
+                "current_price":            r.get("current_price", 0),
+                "current_value":            r.get("current_value", 0),
+                "return_pct":               r.get("return_pct", 0),
+                "cost_basis_source":        r.get("cost_basis_source", "unknown_flat"),
+                "current_price_source":     r.get("current_price_source", "yahoo"),
+                "price_discrepancy_note":   r.get("price_discrepancy_note") or None,
+                "return_pct_is_estimated":  bool(r.get("return_pct_is_estimated", True)),
+                "sentiment":                r.get("sentiment", "Neutral"),
+                "strength":                 r.get("strength", "Neutral"),
+                "trend":                    r.get("trend_label", "Sideways"),
+                "trend_7d":                 r.get("trend_7d", "Sideways"),
+                "trend_30d":                r.get("trend_30d", "Sideways"),
+                "allocation_status":        r.get("allocation_status", "Neutral"),
+                "score":                    r.get("score", 0),
+                "action":                   r.get("action", "HOLD"),
+                "confidence":               r.get("confidence", "MEDIUM"),
+                "reason":                   r.get("reason", ""),
+                "priority_sell":            r.get("action", "HOLD") in SELL_ACTION_TYPES,
+                "estimated_flow_usd":       estimated_flow_usd_for_action(
                     r.get("action", "HOLD"),
                     float(r.get("current_value", 0) or 0),
                 ),
@@ -481,7 +541,7 @@ def generate_output(state: AgentState) -> AgentState:
 
     out_dir  = os.path.join(os.path.dirname(__file__), "..", "output")
     json_out = os.path.join(out_dir, "rebalancing_report.json")
-    csv_out  = os.path.join(out_dir, "rebalancing_report.csv")
+    csv_out  = os.path.join(out_dir, "Nexus_AI_Portfolio_With_Live_Prices.csv")
 
     export_json(output_report, json_out)
     export_csv(output_report["stocks"], csv_out)

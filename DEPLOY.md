@@ -14,7 +14,10 @@
 | `CLAUDE_MODEL` | Optional; default `claude-sonnet-4-5-20250929` |
 | `FINNHUB_API_KEY` | Optional; news fallback exists |
 | `EVENT_REGISTRY_API_KEY` | Optional |
+| `SERPAPI_API_KEY` | Optional; enables Google Finance quote lookup before yfinance fallback |
 | `DEBUG_NEWS` | Optional; `1` for verbose news logs |
+| `STRICT_COST_BASIS` | Optional; `1` — reject CSV rows without a positive buy/price column |
+| `SKIP_CLAUDE_COST_BASIS` | Optional; `1` — do not use Claude to guess missing historical cost basis |
 
 4. **Manual Deploy** → **Deploy latest commit** if the first build ran before env vars were set.
 5. Copy the service URL, e.g. `https://nexus-ai-api.onrender.com` (your name may differ).

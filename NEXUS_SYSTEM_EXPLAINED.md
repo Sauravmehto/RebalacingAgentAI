@@ -213,7 +213,7 @@ See `scoring.py` for exact constants (`PARTIAL_SELL_THRESHOLD`, `STOP_LOSS_THRES
 1. Builds **portfolio summary v2** (`compute_portfolio_summary_v2`) — totals, sector breakdown, action counts, risk, cash.  
 2. Runs **`compute_capital_flows`** — **heuristic** estimated sell proceeds and buy deployment (not broker orders); may list **`sell_candidates`** and per-row **`priority_sell`**, **`estimated_flow_usd`**.  
 3. **Prints** v2 tables to the terminal (`print_report_table_v2`, `print_portfolio_summary_v2`).  
-4. **Writes** `output/rebalancing_report.json` and `output/rebalancing_report.csv`.
+4. **Writes** `output/rebalancing_report.json` and `output/Nexus_AI_Portfolio_With_Live_Prices.csv`.
 
 ---
 
@@ -267,7 +267,7 @@ ticker, quantity, buy_price?, purchase_date, sector_csv
 [generate_output]
 → terminal tables
 → output/rebalancing_report.json
-→ output/rebalancing_report.csv
+→ output/Nexus_AI_Portfolio_With_Live_Prices.csv
 → portfolio_summary.capital_flows (heuristic)
    │
    ▼
@@ -281,7 +281,7 @@ ticker, quantity, buy_price?, purchase_date, sector_csv
 | File | Description |
 |------|-------------|
 | `output/rebalancing_report.json` | Full v2 report: portfolio summary, sector sentiments, **capital_flows**, per-stock actions, confidence, explanations |
-| `output/rebalancing_report.csv` | Flat CSV — one row per stock |
+| `output/Nexus_AI_Portfolio_With_Live_Prices.csv` | Flat CSV — one row per stock |
 | `output/raw_news_json/company_news_<TICKER>.json` | Raw company news payload (source-dependent) |
 | `output/raw_news_json/market_news_general.json` | General market news snapshot when fetched |
 | `output/raw_news_json/sector_headlines.json` | Grouped headlines used for sentiment |

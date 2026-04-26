@@ -6,31 +6,90 @@ import csv
 import json
 import logging
 import os
-from typing import Dict, List
+import re
+from typing import Dict, List, Optional
 
 from tabulate import tabulate
 
 log = logging.getLogger(__name__)
 
-# ── Column name aliases (normalised → canonical) ──────────────────────────────
+# Export-style headers: "Purchase Price ($)" must normalize to a key in _COL_MAP.
+_HEADER_STRIP_PARENS = re.compile(r"\s*\([^)]*\)\s*")
+_HEADER_COLLAPSE_SPACE = re.compile(r"\s+")
+
+
+def _normalize_header_name(raw: str) -> str:
+    """Loose match for spread exports: strip (…), %, $ tokens in parens, collapse space, lower()."""
+    h = (raw or "").strip()
+    h = _HEADER_STRIP_PARENS.sub(" ", h)
+    h = h.replace("%", "").replace("$", "").strip()
+    h = _HEADER_COLLAPSE_SPACE.sub(" ", h)
+    return h.lower().strip()
+
+
+# Column aliases (key = _normalize_header_name output) → canonical field on each row
 _COL_MAP = {
-    "ticker":          "ticker",
-    "symbol":          "ticker",
-    "sector":          "sector",
-    "industry":        "sector",
-    "purchase date":   "purchase_date",
-    "purchasedate":    "purchase_date",
-    "date":            "purchase_date",
-    "quantity":        "quantity",
-    "qty":             "quantity",
-    "shares":          "quantity",
-    "price":           "buy_price",
-    "purchase price":  "buy_price",
-    "avg buy price":   "buy_price",
-    "buy price":       "buy_price",
+    "ticker":            "ticker",
+    "symbol":            "ticker",
+    "sector":            "sector",
+    "industry":          "sector",
+    "purchase date":     "purchase_date",
+    "purchasedate":      "purchase_date",
+    "date":              "purchase_date",
+    "quantity":          "quantity",
+    "qty":               "quantity",
+    "shares":            "quantity",
+    "price":             "buy_price",
+    "purchase price":    "buy_price",
+    "avg buy price":     "buy_price",
+    "buy price":         "buy_price",
+    "current price":     "current_price_csv",
+    "cur price":         "current_price_csv",
+    "amount invested":   "amount_invested_csv",
+    "current value":     "current_value_csv",
+    "p&l":               "pnl_csv",
+    "p/l":               "pnl_csv",
+    "pl":                "pnl_csv",
+    "return":            "return_pct_csv",
+    "return percent":    "return_pct_csv",
 }
 
 REQUIRED_CANONICAL = {"ticker", "quantity"}
+
+# Rows to skip (spreadsheet subtotals / footers) — after ticker is read as string
+_FOOTER_TICKER_SUBSTR = (
+    "PORTFOLIO TOTAL",
+    "GRAND TOTAL",
+    "SUBTOTAL",
+    "SUMMARY",
+)
+
+
+def _is_skipped_portfolio_row(ticker_raw: str) -> bool:
+    t = (ticker_raw or "").strip().upper()
+    if not t:
+        return True
+    for s in _FOOTER_TICKER_SUBSTR:
+        if t == s or t.startswith(f"{s} "):
+            return True
+    if t == "TOTAL" or t.endswith(" TOTAL"):
+        return True
+    return False
+
+
+def _parse_optional_float(val: str) -> Optional[float]:
+    if not (val and str(val).strip()):
+        return None
+    try:
+        return float(
+            str(val)
+            .replace(",", "")
+            .replace("$", "")
+            .replace("%", "")
+            .strip()
+        )
+    except (ValueError, TypeError):
+        return None
 
 
 def load_portfolio_csv(path: str) -> tuple:
@@ -52,9 +111,10 @@ def load_portfolio_csv(path: str) -> tuple:
             reader = csv.DictReader(f)
 
             raw_headers  = [h.strip() for h in (reader.fieldnames or [])]
-            header_map   = {}
+            header_map: Dict[str, str] = {}
             for raw in raw_headers:
-                canonical = _COL_MAP.get(raw.lower())
+                norm = _normalize_header_name(raw)
+                canonical = _COL_MAP.get(norm)
                 if canonical:
                     header_map[raw] = canonical
 
@@ -69,7 +129,12 @@ def load_portfolio_csv(path: str) -> tuple:
                 for raw_col, canonical in header_map.items():
                     mapped[canonical] = row.get(raw_col, "").strip()
 
-                ticker = mapped.get("ticker", "").upper().strip().lstrip("$")
+                raw_ticker = mapped.get("ticker", "")
+                if _is_skipped_portfolio_row(raw_ticker):
+                    log.debug("Row %d: skipped non-holding / footer row", i)
+                    continue
+
+                ticker = raw_ticker.upper().strip().lstrip("$")
                 if not ticker:
                     errors.append(f"Row {i}: empty ticker — skipped")
                     continue
@@ -93,13 +158,25 @@ def load_portfolio_csv(path: str) -> tuple:
                     buy_price = None
 
                 seen_tickers.add(ticker)
-                rows.append({
+                rec: dict = {
                     "ticker":        ticker,
                     "sector_csv":    mapped.get("sector", "Unknown"),
                     "purchase_date": mapped.get("purchase_date", ""),
                     "quantity":      qty,
                     "buy_price":     buy_price,
-                })
+                }
+                for opt in (
+                    "current_price_csv",
+                    "amount_invested_csv",
+                    "current_value_csv",
+                    "pnl_csv",
+                    "return_pct_csv",
+                ):
+                    if opt in mapped and mapped.get(opt, "").strip():
+                        v = _parse_optional_float(mapped.get(opt, ""))
+                        if v is not None:
+                            rec[opt] = v
+                rows.append(rec)
 
     except Exception as exc:
         errors.append(f"Failed to read CSV: {exc}")

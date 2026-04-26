@@ -148,6 +148,7 @@ def main() -> None:
         "output":             {},
         "explanations":       [],
         "errors":             [],
+        "warnings":           [],
         "custom_prompt":      "",
         "selected_headlines": [],
     }
@@ -161,10 +162,15 @@ def main() -> None:
         for e in final["errors"]:
             print(f"    • {e}")
         print()
+    if final.get("warnings"):
+        print("  DATA CAVEATS:")
+        for w in final["warnings"]:
+            print(f"    • {w}")
+        print()
 
     print("  Output files saved to nexus_agent/output/")
     print("    • rebalancing_report.json")
-    print("    • rebalancing_report.csv")
+    print("    • Nexus_AI_Portfolio_With_Live_Prices.csv")
     print("    • agent_graph.png\n")
 
 

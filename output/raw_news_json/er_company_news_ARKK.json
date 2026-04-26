@@ -1,1 +1,34 @@
-[]
+[
+  {
+    "uri": "2026-04-1151228380",
+    "lang": "eng",
+    "isDuplicate": false,
+    "date": "2026-04-25",
+    "time": "01:18:52",
+    "dateTime": "2026-04-25T01:18:52Z",
+    "dateTimePub": "2026-04-25T00:50:07Z",
+    "dataType": "news",
+    "sim": 0.4745098054409027,
+    "url": "https://www.webpronews.com/cathie-woods-bitcoin-maturity-thesis-why-85-crashes-are-history-amid-arks-volatile-bets/",
+    "title": "Cathie Wood's Bitcoin Maturity Thesis: Why 85% Crashes Are History Amid ARK's Volatile Bets",
+    "body": "Bitcoin plunged nearly 50% from its October 2025 peak of $126,080. Now hovering around $66,600. A brutal hit. Yet Cathie Wood sees victory.\n\nThe ARK Invest CEO called it a 'real victory' for the Bitcoin community during a recent CNBC Squawk Box appearance. 'This is a proven technology, it's a proven monetary system, and it's a new asset class,' she said, dismissing the era of 85% to 95% drawdowns as over. Those shocks marked Bitcoin's wild youth. No more.\n\nVolatility has eased about 30% since 2018, Wood noted. Institutional players like BlackRock and Fidelity have poured in via spot ETFs for over two years. Low correlations to stocks, bonds, or gold help stabilize the ride. The current correction? A sign of strength, not frailty. Bitcoin holds ground better than in past cycles -- 75% drops in 2022, 80% in 2018-2019, even 90% back in 2011.\n\nARK knows this terrain intimately. Wood's firm grabbed Bitcoin exposure in 2015, when prices sat under $500. First among public asset managers. Today, they trade aggressively in crypto equities: Coinbase (COIN), Robinhood (HOOD), Block (SQ), Circle (CRCL), Bitmine Immersion (BMNR), Bullish (BLSH). Positions shift with the market's whims. Recent moves included dumping $19 million in Coinbase shares as Bitcoin hit $60,000 in February, then buying back dips in March. ARKB, their spot Bitcoin ETF, ranks as a mid-tier holding at around $100 million.\n\nBut ARK's path hasn't been smooth. Flagship ARKK ETF shed over 50% from its 2021 peak through early 2026, lagging benchmarks like Invesco QQQ. Critics point to underperformance. Wood pushes a five-year horizon. Concentrate on high-conviction tech. No cash hoarding during downturns. That's the strategy.\n\nLong-term, Wood sticks to bold calls. ARK's 2030 Bitcoin targets: bear case $300,000, base $710,000, bull $1.5 million. Derived from six drivers -- institutional investment, digital gold, emerging market safe havens, nation-state treasuries, corporate treasuries, on-chain services. Institutional and gold narratives dominate. Bull case assumes 6.5% portfolio penetration and 60% gold capture. She trimmed the bull from $1.5 million earlier due to stablecoins siphoning transactional roles, but doubled down post-SEC ETF nods. 'Bitcoin hasn't even begun,' she said recently. Major banks lagged; now they're waking up.\n\nAnd broader forces align. Wood flags AI-driven deflationary chaos stressing legacy finance. Bitcoin thrives as a trustless alternative. Nation-states eye reserves -- U.S. could buy 1 million BTC. Corporate treasuries follow MicroStrategy's lead. Emerging markets seek inflation hedges.\n\nRisks linger. Quantum computing looms as a distant threat. ARK's report with Unchained pegs Stage 3 vulnerability -- breaking elliptic curve keys -- in 10-20 years. Only 35% of supply at risk, mostly lost or migratable coins. Post-quantum upgrades can counter it. Not imminent. Current quantum rigs fall short by orders of magnitude.\n\nMarkets test resolve. Public miners like Marathon sold 15,000 BTC for $1.1 billion to trim debt. Collective holdings: 1.16 million BTC, over 5% of supply. Yet Wood buys fear. ARK scooped $70 million in crypto stocks during February dips. Prediction markets now feed their research -- Kalshi data sharpens macro bets.\n\nShallowest cycle yet, Wood predicts. Bottom near. Then liftoff. Institutions demand it. Bitcoin matures. Crashes fade to memory.\n\nHer track record divides opinion. ARKK trails. But Bitcoin bets persist. If she's right, $1.5 million awaits. History favors the patient.",
+    "source": {
+      "uri": "webpronews.com",
+      "dataType": "news",
+      "title": "WebProNews"
+    },
+    "authors": [
+      {
+        "uri": "maya_perez@webpronews.com",
+        "name": "Maya Perez",
+        "type": "author",
+        "isAgency": false
+      }
+    ],
+    "image": "https://www.webpronews.com/wp-content/uploads/2026/04/article-15353-1776999525.jpeg",
+    "eventUri": "eng-11591425",
+    "sentiment": 0.02745098039215677,
+    "wgt": 514775932,
+    "relevance": 1
+  }
+]

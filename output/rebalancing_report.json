@@ -1,146 +1,191 @@
 {
   "portfolio_summary": {
-    "total_invested": 1507704.67,
-    "current_value": 1533434.74,
-    "portfolio_return_pct": 1.71,
+    "total_invested": 1219604.0,
+    "current_value": 1545841.6,
+    "portfolio_return_pct": 26.75,
     "holdings_count": 13,
     "cash_allocation_pct": 10.0,
-    "risk_level": "Medium",
+    "risk_level": "Low",
     "action_counts": {
-      "STRONG BUY": 0,
+      "STRONG BUY": 1,
       "BUY": 0,
-      "HOLD": 9,
-      "REDUCE": 3,
-      "PARTIAL SELL": 0,
+      "HOLD": 2,
+      "REDUCE": 1,
+      "PARTIAL SELL": 4,
       "SELL": 1,
-      "STRONG SELL": 0
+      "STRONG SELL": 4
     },
     "sector_breakdown": {
       "Technology": {
-        "current_value": 141763.81,
-        "allocation_pct": 9.24,
-        "avg_return_pct": 6.87,
-        "sentiment": "Negative"
+        "current_value": 146219.34,
+        "allocation_pct": 9.46,
+        "avg_return_pct": 30.88,
+        "sentiment": "Neutral"
       },
       "Financial Services": {
-        "current_value": 86338.13,
-        "allocation_pct": 5.63,
-        "avg_return_pct": 5.28,
-        "sentiment": "Neutral"
-      },
-      "Energy": {
-        "current_value": 90468.53,
-        "allocation_pct": 5.9,
-        "avg_return_pct": -2.39,
+        "current_value": 85393.56,
+        "allocation_pct": 5.52,
+        "avg_return_pct": 16.64,
         "sentiment": "Positive"
       },
-      "Consumer Defensive": {
-        "current_value": 68046.57,
-        "allocation_pct": 4.44,
-        "avg_return_pct": -10.89,
+      "Energy": {
+        "current_value": 89494.91,
+        "allocation_pct": 5.79,
+        "avg_return_pct": 35.99,
         "sentiment": "Neutral"
       },
+      "Consumer Defensive": {
+        "current_value": 69200.06,
+        "allocation_pct": 4.48,
+        "avg_return_pct": -10.84,
+        "sentiment": "Negative"
+      },
       "Consumer Cyclical": {
-        "current_value": 21628.74,
-        "allocation_pct": 1.41,
-        "avg_return_pct": -26.6,
+        "current_value": 21585.27,
+        "allocation_pct": 1.4,
+        "avg_return_pct": -39.2,
         "sentiment": "Negative"
       },
       "Industrials": {
-        "current_value": 261143.26,
-        "allocation_pct": 17.03,
-        "avg_return_pct": -1.18,
+        "current_value": 259735.24,
+        "allocation_pct": 16.8,
+        "avg_return_pct": 59.33,
         "sentiment": "Neutral"
       },
       "ETF": {
-        "current_value": 864045.7,
-        "allocation_pct": 56.35,
-        "avg_return_pct": 0.71,
+        "current_value": 874213.22,
+        "allocation_pct": 56.55,
+        "avg_return_pct": 34.42,
         "sentiment": "Neutral"
       }
     },
     "top_gainers": [
       {
         "ticker": "CAT",
-        "return_pct": 11.23
+        "return_pct": 124.54
       },
       {
         "ticker": "NVDA",
-        "return_pct": 9.41
+        "return_pct": 56.0
       },
       {
-        "ticker": "QQQ",
-        "return_pct": 7.26
+        "ticker": "GLD",
+        "return_pct": 49.4
       }
     ],
     "top_losers": [
       {
-        "ticker": "GLD",
-        "return_pct": -12.03
+        "ticker": "HON",
+        "return_pct": -5.89
       },
       {
-        "ticker": "HON",
-        "return_pct": -13.59
+        "ticker": "PG",
+        "return_pct": -10.84
       },
       {
         "ticker": "NKE",
-        "return_pct": -26.6
+        "return_pct": -39.2
       }
     ],
     "capital_flows": {
-      "estimated_sell_proceeds_usd": 77035.07,
-      "estimated_buy_deployment_usd": 0.0,
+      "estimated_sell_proceeds_usd": 802904.14,
+      "estimated_buy_deployment_usd": 3415.74,
       "sell_candidates": [
         {
-          "ticker": "HON",
-          "action": "REDUCE",
-          "current_value": 94095.26,
-          "estimated_trim_usd": 23523.81,
-          "reason": "Early warning: -13.6% drawdown \u2014 reducing position to manage risk"
+          "ticker": "SPY",
+          "action": "PARTIAL SELL",
+          "current_value": 355542.12,
+          "estimated_trim_usd": 177771.06,
+          "reason": "Partial profit booking at +21.8% \u2014 trim position while keeping upside exposure"
+        },
+        {
+          "ticker": "QQQ",
+          "action": "PARTIAL SELL",
+          "current_value": 341306.28,
+          "estimated_trim_usd": 170653.14,
+          "reason": "Partial profit booking at +34.4% \u2014 trim position while keeping upside exposure"
+        },
+        {
+          "ticker": "CAT",
+          "action": "STRONG SELL",
+          "current_value": 166158.0,
+          "estimated_trim_usd": 166158.0,
+          "reason": "Booking maximum profit at +124.5% return \u2014 lock in gains before reversal"
+        },
+        {
+          "ticker": "NVDA",
+          "action": "STRONG SELL",
+          "current_value": 68517.54,
+          "estimated_trim_usd": 68517.54,
+          "reason": "Booking maximum profit at +56.0% return \u2014 lock in gains before reversal"
+        },
+        {
+          "ticker": "GLD",
+          "action": "STRONG SELL",
+          "current_value": 59788.5,
+          "estimated_trim_usd": 59788.5,
+          "reason": "Booking maximum profit at +49.4% return \u2014 lock in gains before reversal"
+        },
+        {
+          "ticker": "XOM",
+          "action": "PARTIAL SELL",
+          "current_value": 89494.91,
+          "estimated_trim_usd": 44747.46,
+          "reason": "Partial profit booking at +36.0% \u2014 trim position while keeping upside exposure"
+        },
+        {
+          "ticker": "VT",
+          "action": "PARTIAL SELL",
+          "current_value": 82386.32,
+          "estimated_trim_usd": 41193.16,
+          "reason": "Partial profit booking at +24.8% \u2014 trim position while keeping upside exposure"
+        },
+        {
+          "ticker": "ARKK",
+          "action": "STRONG SELL",
+          "current_value": 35190.0,
+          "estimated_trim_usd": 35190.0,
+          "reason": "Booking maximum profit at +41.7% return \u2014 lock in gains before reversal"
         },
         {
           "ticker": "NKE",
           "action": "SELL",
-          "current_value": 21628.74,
-          "estimated_trim_usd": 21628.74,
-          "reason": "Stop loss triggered at -26.6% \u2014 protecting capital from further downside"
+          "current_value": 21585.27,
+          "estimated_trim_usd": 21585.27,
+          "reason": "Stop loss triggered at -39.2% \u2014 protecting capital from further downside"
         },
         {
           "ticker": "PG",
           "action": "REDUCE",
-          "current_value": 68046.57,
-          "estimated_trim_usd": 17011.64,
-          "reason": "Early warning: -10.9% drawdown \u2014 reducing position to manage risk"
-        },
-        {
-          "ticker": "GLD",
-          "action": "REDUCE",
-          "current_value": 59483.52,
-          "estimated_trim_usd": 14870.88,
-          "reason": "Early warning: -12.0% drawdown \u2014 reducing position to manage risk"
+          "current_value": 69200.06,
+          "estimated_trim_usd": 17300.01,
+          "reason": "Early warning: -10.8% drawdown \u2014 reducing position to manage risk"
         }
       ],
       "assumptions": "Indicative only, not execution advice. Sell-side: fraction of position value \u2014 REDUCE=25%, PARTIAL SELL=50%, SELL=100%, STRONG SELL=100%. Buy-side: BUY=2% of position, STRONG BUY=4% of position."
+    },
+    "cost_basis_summary": {
+      "csv": 13
     }
   },
   "market_sentiment": "Neutral",
   "sector_sentiments": {
-    "Technology": "Negative",
-    "Financial Services": "Neutral",
-    "Energy": "Positive",
-    "Consumer Defensive": "Neutral",
+    "Technology": "Neutral",
+    "Financial Services": "Positive",
+    "Energy": "Neutral",
+    "Consumer Defensive": "Negative",
     "Consumer Cyclical": "Negative",
     "Industrials": "Neutral",
     "ETF": "Neutral"
   },
   "current_allocation": {
-    "Technology": 9.24,
-    "Financial Services": 5.63,
-    "Energy": 5.9,
-    "Consumer Defensive": 4.44,
-    "Consumer Cyclical": 1.41,
-    "Industrials": 17.03,
-    "ETF": 56.35
+    "Technology": 9.46,
+    "Financial Services": 5.52,
+    "Energy": 5.79,
+    "Consumer Defensive": 4.48,
+    "Consumer Cyclical": 1.4,
+    "Industrials": 16.8,
+    "ETF": 56.55
   },
   "target_allocation": {
     "Technology": 30.0,
@@ -148,266 +193,372 @@
     "Financial Services": 20.0,
     "Others": 20.0
   },
+  "execution_timeline": [
+    {
+      "phase": "Report & orders",
+      "date_range": "2026-04-27 \u2013 2026-04-30",
+      "description": "Review actions, tax lots, and place limit orders where possible."
+    },
+    {
+      "phase": "Settlement window",
+      "date_range": "2026-04-30 \u2013 2026-05-04",
+      "description": "Typical T+2 equity settlement; confirm cash available before buys."
+    },
+    {
+      "phase": "Re-check risk",
+      "date_range": "2026-05-04 \u2013 2026-05-25",
+      "description": "Revisit stop-loss / REDUCE names if macro or earnings gap the stock."
+    },
+    {
+      "phase": "Allocation review",
+      "date_range": "2026-05-25 \u2013 2026-06-11",
+      "description": "Compare sector weights vs targets; schedule next full rebalance."
+    }
+  ],
+  "macro_triggers": [
+    {
+      "id": 1,
+      "title": "Rates & real yields",
+      "detail": "Fed path and 10Y real yields drive growth vs value rotation."
+    },
+    {
+      "id": 2,
+      "title": "Inflation prints",
+      "detail": "CPI / PCE surprises move duration and consumer discretionary risk."
+    },
+    {
+      "id": 3,
+      "title": "Earnings season",
+      "detail": "Guidance revisions cluster \u2014 watch margin and demand commentary."
+    },
+    {
+      "id": 4,
+      "title": "Geopolitical / energy shock",
+      "detail": "Energy and defensives can gap on supply headlines."
+    },
+    {
+      "id": 5,
+      "title": "Liquidity & credit",
+      "detail": "HY spreads and funding stress flag risk-off for cyclicals and small-caps."
+    }
+  ],
+  "warnings": [
+    "MSFT: CSV current $415.75 vs market ref ~$424.60 (2.1% diff) \u2014 using market ref for rebalancing; verify stale export.",
+    "NVDA: CSV current $199.64 vs market ref ~$208.26 (4.1% diff) \u2014 using market ref for rebalancing; verify stale export.",
+    "ARKK: CSV current $78.03 vs market ref ~$76.50 (2.0% diff) \u2014 using market ref for rebalancing; verify stale export."
+  ],
   "stocks": [
     {
       "symbol": "MSFT",
       "sector": "Technology",
-      "buy_price": 398.55,
-      "current_price": 415.75,
-      "current_value": 76082.25,
-      "return_pct": 4.32,
-      "sentiment": "Negative",
+      "buy_price": 401.5,
+      "current_price": 424.6,
+      "current_value": 77701.8,
+      "return_pct": 5.75,
+      "cost_basis_source": "csv",
+      "current_price_source": "yahoo",
+      "price_discrepancy_note": "CSV current $415.75 vs market ref ~$424.60 (2.1% diff) \u2014 using market ref for rebalancing; verify stale export.",
+      "return_pct_is_estimated": false,
+      "sentiment": "Neutral",
       "strength": "Neutral",
       "trend": "Uptrend",
       "trend_7d": "Sideways",
       "trend_30d": "Uptrend",
       "allocation_status": "Underweight",
-      "score": 58.7,
+      "score": 65.1,
       "action": "HOLD",
       "confidence": "HIGH",
-      "reason": "Mixed signals \u2014 score=59, sentiment=Negative, trend=Uptrend, allocation=Underweight, return=+4.3%",
+      "reason": "Mixed signals \u2014 score=65, sentiment=Neutral, trend=Uptrend, allocation=Underweight, return=+5.8%",
       "priority_sell": false,
       "estimated_flow_usd": 0.0
     },
     {
       "symbol": "NVDA",
       "sector": "Technology",
-      "buy_price": 182.4701,
-      "current_price": 199.64,
-      "current_value": 65681.56,
-      "return_pct": 9.41,
-      "sentiment": "Negative",
-      "strength": "Neutral",
+      "buy_price": 133.5,
+      "current_price": 208.26,
+      "current_value": 68517.54,
+      "return_pct": 56.0,
+      "cost_basis_source": "csv",
+      "current_price_source": "yahoo",
+      "price_discrepancy_note": "CSV current $199.64 vs market ref ~$208.26 (4.1% diff) \u2014 using market ref for rebalancing; verify stale export.",
+      "return_pct_is_estimated": false,
+      "sentiment": "Neutral",
+      "strength": "Strong",
       "trend": "Uptrend",
       "trend_7d": "Sideways",
       "trend_30d": "Uptrend",
       "allocation_status": "Underweight",
-      "score": 59.2,
-      "action": "HOLD",
+      "score": 69.5,
+      "action": "STRONG SELL",
       "confidence": "HIGH",
-      "reason": "Mixed signals \u2014 score=59, sentiment=Negative, trend=Uptrend, allocation=Underweight, return=+9.4%",
-      "priority_sell": false,
-      "estimated_flow_usd": 0.0
+      "reason": "Booking maximum profit at +56.0% return \u2014 lock in gains before reversal",
+      "priority_sell": true,
+      "estimated_flow_usd": 68517.54
     },
     {
       "symbol": "JPM",
       "sector": "Financial Services",
-      "buy_price": 296.0449,
-      "current_price": 311.69,
-      "current_value": 86338.13,
-      "return_pct": 5.28,
-      "sentiment": "Neutral",
-      "strength": "Neutral",
+      "buy_price": 264.3,
+      "current_price": 308.28,
+      "current_value": 85393.56,
+      "return_pct": 16.64,
+      "cost_basis_source": "csv",
+      "current_price_source": "yahoo",
+      "price_discrepancy_note": null,
+      "return_pct_is_estimated": false,
+      "sentiment": "Positive",
+      "strength": "Strong",
       "trend": "Uptrend",
       "trend_7d": "Sideways",
       "trend_30d": "Uptrend",
       "allocation_status": "Underweight",
-      "score": 65.0,
-      "action": "HOLD",
+      "score": 72.4,
+      "action": "STRONG BUY",
       "confidence": "HIGH",
-      "reason": "Mixed signals \u2014 score=65, sentiment=Neutral, trend=Uptrend, allocation=Underweight, return=+5.3%",
+      "reason": "Underweight sector with positive sentiment and confirmed uptrend \u2014 add aggressively",
       "priority_sell": false,
-      "estimated_flow_usd": 0.0
+      "estimated_flow_usd": 3415.74
     },
     {
       "symbol": "XOM",
       "sector": "Energy",
-      "buy_price": 154.22,
-      "current_price": 150.53,
-      "current_value": 90468.53,
-      "return_pct": -2.39,
-      "sentiment": "Positive",
-      "strength": "Neutral",
+      "buy_price": 109.5,
+      "current_price": 148.91,
+      "current_value": 89494.91,
+      "return_pct": 35.99,
+      "cost_basis_source": "csv",
+      "current_price_source": "yahoo",
+      "price_discrepancy_note": null,
+      "return_pct_is_estimated": false,
+      "sentiment": "Neutral",
+      "strength": "Strong",
       "trend": "Downtrend",
       "trend_7d": "Sideways",
       "trend_30d": "Downtrend",
       "allocation_status": "Underweight",
-      "score": 65.6,
-      "action": "HOLD",
+      "score": 64.1,
+      "action": "PARTIAL SELL",
       "confidence": "HIGH",
-      "reason": "Mixed signals \u2014 score=66, sentiment=Positive, trend=Downtrend, allocation=Underweight, return=-2.4%",
-      "priority_sell": false,
-      "estimated_flow_usd": 0.0
+      "reason": "Partial profit booking at +36.0% \u2014 trim position while keeping upside exposure",
+      "priority_sell": true,
+      "estimated_flow_usd": 44747.46
     },
     {
       "symbol": "PG",
       "sector": "Consumer Defensive",
-      "buy_price": 163.51,
-      "current_price": 145.71,
-      "current_value": 68046.57,
-      "return_pct": -10.89,
-      "sentiment": "Neutral",
+      "buy_price": 166.2,
+      "current_price": 148.18,
+      "current_value": 69200.06,
+      "return_pct": -10.84,
+      "cost_basis_source": "csv",
+      "current_price_source": "yahoo",
+      "price_discrepancy_note": null,
+      "return_pct_is_estimated": false,
+      "sentiment": "Negative",
       "strength": "Weak",
       "trend": "Sideways",
       "trend_7d": "Sideways",
       "trend_30d": "Sideways",
       "allocation_status": "Underweight",
-      "score": 57.1,
+      "score": 50.8,
       "action": "REDUCE",
-      "confidence": "LOW",
-      "reason": "Early warning: -10.9% drawdown \u2014 reducing position to manage risk",
+      "confidence": "MEDIUM",
+      "reason": "Early warning: -10.8% drawdown \u2014 reducing position to manage risk",
       "priority_sell": true,
-      "estimated_flow_usd": 17011.64
+      "estimated_flow_usd": 17300.01
     },
     {
       "symbol": "NKE",
       "sector": "Consumer Cyclical",
-      "buy_price": 61.01,
-      "current_price": 44.78,
-      "current_value": 21628.74,
-      "return_pct": -26.6,
+      "buy_price": 73.5,
+      "current_price": 44.69,
+      "current_value": 21585.27,
+      "return_pct": -39.2,
+      "cost_basis_source": "csv",
+      "current_price_source": "yahoo",
+      "price_discrepancy_note": null,
+      "return_pct_is_estimated": false,
       "sentiment": "Negative",
       "strength": "Weak",
       "trend": "Downtrend",
       "trend_7d": "Sideways",
       "trend_30d": "Downtrend",
       "allocation_status": "Underweight",
-      "score": 41.0,
+      "score": 34.6,
       "action": "SELL",
       "confidence": "HIGH",
-      "reason": "Stop loss triggered at -26.6% \u2014 protecting capital from further downside",
+      "reason": "Stop loss triggered at -39.2% \u2014 protecting capital from further downside",
       "priority_sell": true,
-      "estimated_flow_usd": 21628.74
+      "estimated_flow_usd": 21585.27
     },
     {
       "symbol": "CAT",
       "sector": "Industrials",
-      "buy_price": 750.8904,
-      "current_price": 835.24,
-      "current_value": 167048.0,
-      "return_pct": 11.23,
+      "buy_price": 370.0,
+      "current_price": 830.79,
+      "current_value": 166158.0,
+      "return_pct": 124.54,
+      "cost_basis_source": "csv",
+      "current_price_source": "yahoo",
+      "price_discrepancy_note": null,
+      "return_pct_is_estimated": false,
       "sentiment": "Neutral",
       "strength": "Strong",
       "trend": "Uptrend",
       "trend_7d": "Uptrend",
       "trend_30d": "Uptrend",
       "allocation_status": "Neutral",
-      "score": 66.1,
-      "action": "HOLD",
+      "score": 70.0,
+      "action": "STRONG SELL",
       "confidence": "HIGH",
-      "reason": "Mixed signals \u2014 score=66, sentiment=Neutral, trend=Uptrend, allocation=Neutral, return=+11.2%",
-      "priority_sell": false,
-      "estimated_flow_usd": 0.0
+      "reason": "Booking maximum profit at +124.5% return \u2014 lock in gains before reversal",
+      "priority_sell": true,
+      "estimated_flow_usd": 166158.0
     },
     {
       "symbol": "HON",
       "sector": "Industrials",
-      "buy_price": 248.04,
-      "current_price": 214.34,
-      "current_value": 94095.26,
-      "return_pct": -13.59,
+      "buy_price": 226.5,
+      "current_price": 213.16,
+      "current_value": 93577.24,
+      "return_pct": -5.89,
+      "cost_basis_source": "csv",
+      "current_price_source": "yahoo",
+      "price_discrepancy_note": null,
+      "return_pct_is_estimated": false,
       "sentiment": "Neutral",
-      "strength": "Weak",
+      "strength": "Neutral",
       "trend": "Downtrend",
       "trend_7d": "Downtrend",
       "trend_30d": "Sideways",
       "allocation_status": "Neutral",
-      "score": 45.2,
-      "action": "REDUCE",
+      "score": 49.1,
+      "action": "HOLD",
       "confidence": "MEDIUM",
-      "reason": "Early warning: -13.6% drawdown \u2014 reducing position to manage risk",
-      "priority_sell": true,
-      "estimated_flow_usd": 23523.81
+      "reason": "Mixed signals \u2014 score=49, sentiment=Neutral, trend=Downtrend, allocation=Neutral, return=-5.9%",
+      "priority_sell": false,
+      "estimated_flow_usd": 0.0
     },
     {
       "symbol": "SPY",
       "sector": "ETF",
-      "buy_price": 684.5106,
-      "current_price": 708.45,
-      "current_value": 352808.11,
-      "return_pct": 3.5,
+      "buy_price": 586.0,
+      "current_price": 713.94,
+      "current_value": 355542.12,
+      "return_pct": 21.83,
+      "cost_basis_source": "csv",
+      "current_price_source": "yahoo",
+      "price_discrepancy_note": null,
+      "return_pct_is_estimated": false,
       "sentiment": "Neutral",
-      "strength": "Neutral",
+      "strength": "Strong",
       "trend": "Uptrend",
       "trend_7d": "Sideways",
       "trend_30d": "Uptrend",
       "allocation_status": "Overweight",
-      "score": 49.9,
-      "action": "HOLD",
+      "score": 51.7,
+      "action": "PARTIAL SELL",
       "confidence": "MEDIUM",
-      "reason": "Mixed signals \u2014 score=50, sentiment=Neutral, trend=Uptrend, allocation=Overweight, return=+3.5%",
-      "priority_sell": false,
-      "estimated_flow_usd": 0.0
+      "reason": "Partial profit booking at +21.8% \u2014 trim position while keeping upside exposure",
+      "priority_sell": true,
+      "estimated_flow_usd": 177771.06
     },
     {
       "symbol": "QQQ",
       "sector": "ETF",
-      "buy_price": 607.3242,
-      "current_price": 651.42,
-      "current_value": 334829.87,
-      "return_pct": 7.26,
+      "buy_price": 494.0,
+      "current_price": 664.02,
+      "current_value": 341306.28,
+      "return_pct": 34.42,
+      "cost_basis_source": "csv",
+      "current_price_source": "yahoo",
+      "price_discrepancy_note": null,
+      "return_pct_is_estimated": false,
       "sentiment": "Neutral",
-      "strength": "Neutral",
+      "strength": "Strong",
       "trend": "Uptrend",
       "trend_7d": "Sideways",
       "trend_30d": "Uptrend",
       "allocation_status": "Overweight",
-      "score": 50.2,
-      "action": "HOLD",
+      "score": 52.9,
+      "action": "PARTIAL SELL",
       "confidence": "MEDIUM",
-      "reason": "Mixed signals \u2014 score=50, sentiment=Neutral, trend=Uptrend, allocation=Overweight, return=+7.3%",
-      "priority_sell": false,
-      "estimated_flow_usd": 0.0
+      "reason": "Partial profit booking at +34.4% \u2014 trim position while keeping upside exposure",
+      "priority_sell": true,
+      "estimated_flow_usd": 170653.14
     },
     {
       "symbol": "VT",
       "sector": "ETF",
-      "buy_price": 146.6057,
-      "current_price": 149.15,
-      "current_value": 81734.2,
-      "return_pct": 1.74,
+      "buy_price": 120.5,
+      "current_price": 150.34,
+      "current_value": 82386.32,
+      "return_pct": 24.76,
+      "cost_basis_source": "csv",
+      "current_price_source": "yahoo",
+      "price_discrepancy_note": null,
+      "return_pct_is_estimated": false,
       "sentiment": "Neutral",
-      "strength": "Neutral",
+      "strength": "Strong",
       "trend": "Uptrend",
       "trend_7d": "Sideways",
       "trend_30d": "Uptrend",
       "allocation_status": "Overweight",
-      "score": 49.7,
-      "action": "HOLD",
+      "score": 52.0,
+      "action": "PARTIAL SELL",
       "confidence": "MEDIUM",
-      "reason": "Mixed signals \u2014 score=50, sentiment=Neutral, trend=Uptrend, allocation=Overweight, return=+1.7%",
-      "priority_sell": false,
-      "estimated_flow_usd": 0.0
+      "reason": "Partial profit booking at +24.8% \u2014 trim position while keeping upside exposure",
+      "priority_sell": true,
+      "estimated_flow_usd": 41193.16
     },
     {
       "symbol": "ARKK",
       "sector": "ETF",
-      "buy_price": 74.22,
+      "buy_price": 54.0,
       "current_price": 76.5,
       "current_value": 35190.0,
-      "return_pct": 3.07,
+      "return_pct": 41.67,
+      "cost_basis_source": "csv",
+      "current_price_source": "yahoo",
+      "price_discrepancy_note": "CSV current $78.03 vs market ref ~$76.50 (2.0% diff) \u2014 using market ref for rebalancing; verify stale export.",
+      "return_pct_is_estimated": false,
       "sentiment": "Neutral",
-      "strength": "Neutral",
+      "strength": "Strong",
       "trend": "Uptrend",
       "trend_7d": "Sideways",
       "trend_30d": "Uptrend",
       "allocation_status": "Overweight",
-      "score": 49.8,
-      "action": "HOLD",
+      "score": 53.7,
+      "action": "STRONG SELL",
       "confidence": "MEDIUM",
-      "reason": "Mixed signals \u2014 score=50, sentiment=Neutral, trend=Uptrend, allocation=Overweight, return=+3.1%",
-      "priority_sell": false,
-      "estimated_flow_usd": 0.0
+      "reason": "Booking maximum profit at +41.7% return \u2014 lock in gains before reversal",
+      "priority_sell": true,
+      "estimated_flow_usd": 35190.0
     },
     {
       "symbol": "GLD",
       "sector": "ETF",
-      "buy_price": 490.0,
-      "current_price": 431.04,
-      "current_value": 59483.52,
-      "return_pct": -12.03,
+      "buy_price": 290.0,
+      "current_price": 433.25,
+      "current_value": 59788.5,
+      "return_pct": 49.4,
+      "cost_basis_source": "csv",
+      "current_price_source": "yahoo",
+      "price_discrepancy_note": null,
+      "return_pct_is_estimated": false,
       "sentiment": "Neutral",
-      "strength": "Weak",
-      "trend": "Sideways",
-      "trend_7d": "Sideways",
-      "trend_30d": "Sideways",
+      "strength": "Strong",
+      "trend": "Downtrend",
+      "trend_7d": "Downtrend",
+      "trend_30d": "Uptrend",
       "allocation_status": "Overweight",
-      "score": 41.5,
-      "action": "REDUCE",
+      "score": 52.4,
+      "action": "STRONG SELL",
       "confidence": "MEDIUM",
-      "reason": "Early warning: -12.0% drawdown \u2014 reducing position to manage risk",
+      "reason": "Booking maximum profit at +49.4% return \u2014 lock in gains before reversal",
       "priority_sell": true,
-      "estimated_flow_usd": 14870.88
+      "estimated_flow_usd": 59788.5
     }
   ]
 }

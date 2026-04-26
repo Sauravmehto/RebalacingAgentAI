@@ -250,7 +250,7 @@ Where:
    ```
 
 2. **Saves `output/rebalancing_report.json`** — full structured report.
-3. **Saves `output/rebalancing_report.csv`** — flat table, one row per stock.
+3. **Saves `output/Nexus_AI_Portfolio_With_Live_Prices.csv`** — flat table, one row per stock.
 
 **Portfolio summary** is also computed:
 ```
@@ -322,7 +322,7 @@ ticker, quantity, buy_price?, purchase_date, sector_csv
 [generate_output]
 → terminal table
 → output/rebalancing_report.json
-→ output/rebalancing_report.csv
+→ output/Nexus_AI_Portfolio_With_Live_Prices.csv
    │
    ▼
 [explain_results]  ── Claude ──────────► one sentence per stock
@@ -336,7 +336,7 @@ ticker, quantity, buy_price?, purchase_date, sector_csv
 | File | Description |
 |------|-------------|
 | `output/rebalancing_report.json` | Full report with portfolio summary, sector sentiments, and per-stock recommendations |
-| `output/rebalancing_report.csv` | Flat CSV — one row per stock, all columns |
+| `output/Nexus_AI_Portfolio_With_Live_Prices.csv` | Flat CSV — one row per stock, all columns |
 | `output/agent_graph.png` | Visual diagram of the 9-node LangGraph pipeline |
 | `output/raw_news_json/company_news_<TICKER>.json` | Raw Finnhub JSON for each ticker (all fields) |
 | `output/raw_news_json/market_news_general.json` | Raw general market news from Finnhub |

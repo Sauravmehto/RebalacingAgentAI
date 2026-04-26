@@ -81,7 +81,7 @@ OUTPUT_DIR   = ROOT_DIR / "output"
 UPLOAD_DIR   = OUTPUT_DIR / "uploads"
 NEWS_DIR     = OUTPUT_DIR / "raw_news_json"
 REPORT_JSON  = OUTPUT_DIR / "rebalancing_report.json"
-REPORT_CSV   = OUTPUT_DIR / "rebalancing_report.csv"
+REPORT_CSV   = OUTPUT_DIR / "Nexus_AI_Portfolio_With_Live_Prices.csv"
 
 UPLOAD_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -163,6 +163,7 @@ def _run_agent(
         "output":             {},
         "explanations":       [],
         "errors":             [],
+        "warnings":           [],
         "custom_prompt":      custom_prompt or "",
         "selected_headlines": headlines,
     }
@@ -180,9 +181,11 @@ def _run_agent(
     if not output:
         raise ValueError("Agent returned empty output — check logs for errors")
 
-    # Attach explanations to output for the frontend
+    # Attach explanations / errors / warnings to output for the frontend
     output["explanations"] = final.get("explanations", [])
     output["errors"]       = final.get("errors", [])
+    if "warnings" not in output:
+        output["warnings"] = final.get("warnings", [])
     return output
 
 
@@ -323,6 +326,7 @@ async def get_report():
             "stocks": [],
             "portfolio_summary": None,
             "market_sentiment": "Neutral",
+            "warnings": [],
             "_empty": True,
         }
     with open(REPORT_JSON, encoding="utf-8") as f:
@@ -331,13 +335,13 @@ async def get_report():
 
 @app.get("/download-csv")
 async def download_csv():
-    """Download the last rebalancing_report.csv."""
+    """Download the last generated portfolio CSV report."""
     if not REPORT_CSV.exists():
         raise HTTPException(status_code=404, detail="No CSV report found.")
     return FileResponse(
         path=str(REPORT_CSV),
         media_type="text/csv",
-        filename="rebalancing_report.csv",
+        filename="Nexus_AI_Portfolio_With_Live_Prices.csv",
     )
 
 
