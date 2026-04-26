@@ -50,11 +50,11 @@ export default function Header({ portfolioReturn, marketSentiment }) {
             </svg>
           </div>
           <div className="min-w-0">
-            <h1 className="text-lg font-bold text-white leading-tight truncate">
-              Nexus AI <span className="text-cyan-400">v2</span>
+            <h1 className="font-display text-2xl sm:text-3xl tracking-tight text-white leading-tight truncate">
+              Nexus AI
             </h1>
             <p className="text-xs text-gray-500 truncate hidden sm:block">
-              Intelligent Portfolio Manager
+              Live Rebalancing Dashboard & Intelligent Portfolio Manager
             </p>
           </div>
         </div>

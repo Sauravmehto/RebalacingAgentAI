@@ -101,7 +101,15 @@ export default function Upload({ onUpload, onAnalyze, loading, csvPath }) {
                 Drop your CSV here or <span className="text-cyan-400">click to browse</span>
               </p>
               <p className="text-xs text-gray-600 mt-1">
-                Supported: Ticker, Quantity, Buy Price, Purchase Date, Sector
+                Required: <span className="text-gray-400">Ticker</span>,{' '}
+                <span className="text-gray-400">Quantity</span>.{' '}
+                Strongly recommended:{' '}
+                <span className="text-amber-200/90">Buy price</span> (or Price / Avg buy / Purchase price) —{' '}
+                without it, return% may be reconstructed from history or shown as 0%, and confidence is capped.
+              </p>
+              <p className="text-xs text-gray-600 mt-0.5">
+                Optional: <span className="text-gray-400">Purchase date</span> helps infer cost when buy price is blank.
+                Sector improves grouping.
               </p>
             </div>
           )}

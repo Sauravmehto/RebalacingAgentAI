@@ -7,6 +7,7 @@ import SectorBreakdown from '../components/SectorBreakdown.jsx'
 import NewsSection    from '../components/NewsSection.jsx'
 import ExplanationPanel from '../components/ExplanationPanel.jsx'
 import RebalanceModule from '../components/RebalanceModule.jsx'
+import ReportContextPanel from '../components/ReportContextPanel.jsx'
 import {
   uploadPortfolio,
   rebalance,
@@ -301,6 +302,17 @@ export default function Dashboard() {
         {summary && (
           <Section>
             <SummaryCards summary={summary} marketSentiment={marketSentiment} />
+          </Section>
+        )}
+
+        {reportData && (
+          <Section>
+            <ReportContextPanel
+              warnings={reportData.warnings}
+              executionTimeline={reportData.execution_timeline}
+              macroTriggers={reportData.macro_triggers}
+              costBasisSummary={summary?.cost_basis_summary}
+            />
           </Section>
         )}
 

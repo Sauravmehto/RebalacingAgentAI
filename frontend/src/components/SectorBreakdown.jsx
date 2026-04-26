@@ -175,6 +175,30 @@ export default function SectorBreakdown({ sectorBreakdown, currentAllocation, ta
                 </span>
               </div>
 
+              {(() => {
+                const tgt = targetAllocation?.[name] ?? targetAllocation?.Others ?? 20
+                const cur = info.allocation_pct ?? 0
+                const delta = cur - tgt
+                const arrow = delta > 0.5 ? '↑' : delta < -0.5 ? '↓' : '→'
+                const arrowCls =
+                  delta > 0.5 ? 'text-red-400' : delta < -0.5 ? 'text-blue-400' : 'text-gray-500'
+                return (
+                  <p className="text-xs text-gray-500 mb-3 flex flex-wrap items-center gap-1.5">
+                    <span className="tabular-nums text-white font-medium">{cur.toFixed(1)}%</span>
+                    <span className={`font-bold ${arrowCls}`} title="Current vs target allocation">{arrow}</span>
+                    <span className="text-gray-500">target</span>
+                    <span className="tabular-nums text-gray-400">{tgt.toFixed(0)}%</span>
+                    <span
+                      className={`tabular-nums ${
+                        delta > 0.1 ? 'text-red-300/90' : delta < -0.1 ? 'text-blue-300/90' : 'text-gray-600'
+                      }`}
+                    >
+                      (Δ {delta >= 0 ? '+' : ''}{delta.toFixed(1)}%)
+                    </span>
+                  </p>
+                )
+              })()}
+
               <div className="grid grid-cols-2 gap-2 text-xs">
                 <div>
                   <p className="text-gray-600 mb-0.5">Allocation</p>

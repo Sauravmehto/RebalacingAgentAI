@@ -48,11 +48,15 @@ function ScoreBar({ score }) {
   )
 }
 
-function ReturnCell({ value }) {
+function ReturnCell({ value, estimated }) {
   if (value === undefined || value === null) return <span className="text-gray-600">—</span>
   const pos = value >= 0
   return (
-    <span className={`tabular-nums font-medium ${pos ? 'text-green-400' : 'text-red-400'}`}>
+    <span
+      className={`tabular-nums font-medium ${pos ? 'text-green-400' : 'text-red-400'}`}
+      title={estimated ? 'Return% may be reconstructed — add CSV buy price for trusted P&L' : undefined}
+    >
+      {estimated && <span className="text-amber-400/90 mr-0.5 select-none">~</span>}
       {pos ? '+' : ''}{value.toFixed(2)}%
     </span>
   )
@@ -179,7 +183,7 @@ export default function PortfolioTable({ stocks }) {
           {/* CSV download */}
           <a
             href={getDownloadCsvUrl()}
-            download="rebalancing_report.csv"
+            download="Nexus_AI_Portfolio_With_Live_Prices.csv"
             className="btn-secondary text-sm flex items-center gap-1.5"
           >
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -228,7 +232,7 @@ export default function PortfolioTable({ stocks }) {
                   {s.current_price ? `$${s.current_price.toFixed(2)}` : '—'}
                 </td>
                 <td className="px-3 py-3">
-                  <ReturnCell value={s.return_pct} />
+                  <ReturnCell value={s.return_pct} estimated={s.return_pct_is_estimated} />
                 </td>
                 <td className="px-3 py-3">
                   <SentimentBadge sentiment={s.sentiment} />
